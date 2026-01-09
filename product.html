@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تفاصيل المنتج</title>
+
+<style>
+body {
+  font-family: Cairo, sans-serif;
+  background: #f9f7f4;
+  margin: 0;
+  padding: 2rem;
+}
+
+.product-details {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.slider {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.slider img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 15px;
+  display: none;
+}
+
+.slider img.active {
+  display: block;
+}
+
+.slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  font-size: 22px;
+  padding: 6px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.prev { right: 15px; }
+.next { left: 15px; }
+
+.product-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.5rem 0 0.2rem 0;
+}
+
+.product-subtitle {
+  font-size: 1.2rem;
+  color: #6b4e2e;
+  margin-bottom: 1rem;
+}
+
+.price {
+  color: #8b263e;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.buy {
+  display: inline-block;
+  background: #8b263e;
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem 1.6rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 1rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="product-details">
+
+  <div class="slider" id="slider"></div>
+
+  <h1 id="product-name" class="product-title">اسم المنتج</h1>
+  <h2 id="product-subtitle" class="product-subtitle">Subtitle</h2>
+  <p id="product-desc">وصف المنتج</p>
+  <p class="price" id="product-price">السعر: 0 ر.ع</p>
+
+  <a class="buy" id="buy-button" href="#">🛒 إقتَنِ</a>
+</div>
+
+<script>
+// بيانات المنتجات
+const products = {
+  table1: {
+    name: "Mother of pearl",
+    subtitle: "coffee table",
+    desc: "طاولة خشبية صغيرة، مزيّنة يدوياً بسطح لامع من قشرة اللؤلؤ (فن الفسيفساء).",
+    price: 18,
+    images: ["mp.jpeg","mp2.jpeg","mp3.jpeg"]
+  },
+  flowered: {
+    name: "Flowered surface",
+    subtitle: "Coffee table",
+    desc: "طاولة قهوة تضيف لمسة فنية لأي مكان، بسطح لامع مزين بورد من فن الفسيفساء",
+    price: 20,
+    images: ["fl.jpeg","fl2.jpeg","fl3.jpeg"]
+  },
+  tray: {
+    name: "Mother of pearl",
+    subtitle: "Tray",
+    desc: "صينية خشبية للزينة، سطح قشر اللؤلؤ",
+    price: 5.5,
+    images: [
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36"
+    ]
+  },
+  toy: {
+    name: "Keyboard toy medal",
+    subtitle: "Relieve stress",
+    desc: "لعبة (ميدالية) تساعد على تخفيف التوتر .",
+    price: 2,
+    images: [
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511"
+    ]
+  },
+  coaster: {
+    name: "Cup coaster",
+    subtitle: "Tile surface",
+    desc: "كوستر كوب ولوحة جدارية في الوقت ذاته. قاعدة خشبية عالية الجودة مع إضافة قطعة بلاط بزخارف مختلفة",
+    price: 5.5,
+    images: ["cup.jpeg","cup2.jpeg"]
+  }
+};
+
+
+// الحصول على id من الرابط
+const urlParams = new URLSearchParams(window.location.search);
+const productId = urlParams.get("id");
+
+const product = products[productId] || products["table1"]; // افتراضي
+
+// ملء البيانات
+document.getElementById("product-name").textContent = product.name;
+document.getElementById("product-subtitle").textContent = product.subtitle;
+document.getElementById("product-desc").textContent = product.desc;
+document.getElementById("product-price").textContent = `السعر: ${product.price} ر.ع`;
+document.getElementById("buy-button").href = `new 2.html?product=${encodeURIComponent(product.name)}&price=${product.price}`;
+
+// إنشاء سلايدر الصور
+const sliderDiv = document.getElementById("slider");
+product.images.forEach((imgSrc, index) => {
+  const img = document.createElement("img");
+  img.src = imgSrc;
+  if(index === 0) img.classList.add("active");
+  sliderDiv.appendChild(img);
+});
+
+// وظائف السلايدر
+let current = 0;
+function changeSlide(direction) {
+  const imgs = sliderDiv.querySelectorAll("img");
+  imgs[current].classList.remove("active");
+  current = (current + direction + imgs.length) % imgs.length;
+  imgs[current].classList.add("active");
+}
+
+// أزرار السلايدر
+const prevBtn = document.createElement("button");
+prevBtn.className = "prev";
+prevBtn.textContent = "›";
+prevBtn.onclick = () => changeSlide(-1);
+sliderDiv.appendChild(prevBtn);
+
+const nextBtn = document.createElement("button");
+nextBtn.className = "next";
+nextBtn.textContent = "‹";
+nextBtn.onclick = () => changeSlide(1);
+sliderDiv.appendChild(nextBtn);
+
+</script>
+
+</body>
+</html>
+

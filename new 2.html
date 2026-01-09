@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سلة الطلب - حطبه</title>
+
+    <style>
+        body {
+            font-family: "Cairo", sans-serif;
+            background-color: #f9f7f4;
+            margin: 0;
+            padding: 2rem;
+            color: #3e2f1c;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.7rem;
+            margin-top: 0.3rem;
+            border-radius: 8px;
+            border: 1px solid #8b263e;
+        }
+
+        button {
+            width: 100%;
+            background-color: #8b263e;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 1.5rem;
+        }
+
+        button:hover {
+            background-color: #6a4e2b;
+        }
+    </style>
+
+    <script>
+        // قراءة بيانات المنتج من الرابط
+        const params = new URLSearchParams(window.location.search);
+        const product = params.get("product");
+        const price = params.get("price");
+
+        // عرض البيانات بمجرد تحميل الصفحة
+        window.onload = function() {
+            document.getElementById("product").value = product;
+            document.getElementById("price").value = price;
+        }
+
+        // إرسال إلى واتساب
+        function sendWhatsApp() {
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const address = document.getElementById("address").value;
+
+            const message =
+                `طلب جديد من متجر حطبه:%0A` +
+                `المنتج: ${product}%0A` +
+                `السعر: ${price} ريال%0A` +
+                `الاسم: ${name}%0A` +
+                `رقم الهاتف: ${phone}%0A` +
+                `العنوان: ${address}`;
+
+            // ضيفي رقمك هنا بدل 00000000
+            window.open(`https://wa.me/96800000000?text=${message}`, "_blank");
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>سلة الطلب</h2>
+
+        <label>اسم المنتج:</label>
+        <input id="product" readonly>
+
+        <label>السعر:</label>
+        <input id="price" readonly>
+
+        <label>الاسم الكامل:</label>
+        <input id="name" placeholder="اكتبي اسمك">
+
+        <label>رقم الهاتف:</label>
+        <input id="phone" placeholder="رقم التواصل">
+
+        <label>العنوان:</label>
+        <textarea id="address" placeholder="مكان التوصيل"></textarea>
+
+        <button onclick="sendWhatsApp()">إرسال الطلب عبر واتساب</button>
+		<a href="shipping.html">سياسة الشحن</a>
+
+    </div>
+
+</body>
+</html>

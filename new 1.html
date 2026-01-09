@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حطبه - متجر المنتجات الخشبية</title>
+
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      margin: 0;
+      background-color: #f9f7f4;
+      color: #3e2f1c;
+    }
+
+    /* رأس الصفحة بصورة */
+    
+
+    header img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      
+    }
+
+    header .text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    /* المنتجات */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .product {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .product:hover {
+      transform: scale(1.03);
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product h3 {
+      margin: 0.7rem 0 0.3rem;
+    }
+
+    .product p {
+      color: #6b4e2e;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .add-to-cart {
+      background-color: #8b263e;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .add-to-cart:hover {
+      background-color: #6a4e2b;
+    }
+
+    /* سلة الطلب */
+    .cart {
+      background-color: #fff8f0;
+      padding: 2rem;
+      border-top: 3px solid #a37c40;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #8b263e;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+	/* أزرار التواصل العائمة */
+.social-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* تقدرين تغيرينها: left:20px لو تبينها يسار */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+   /* أزرار التواصل العائمة */
+.social-buttons {
+    position: fixed;
+    bottom: 25px;
+    right: 20px; /* ← لو تبينه يسار غيريها إلى left:20px */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.social-buttons a {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: 0.3s;
+}
+
+.social-buttons a img {
+    width: 60%;
+    height: 60%;
+}
+
+/* تأثير عند المرور */
+.social-buttons a:hover {
+    transform: scale(1.15);
+}
+
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- رأس الصفحة بصورة -->
+  <header>
+    <img src="hatb.png" alt="صورة خشب">
+  </header>
+
+  <!-- قسم المنتجات -->
+  <section class="products">
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" alt=" طاولة خشبية">
+      <h3>طاولة خشبية صغيرة</h3>
+      <p>مع سطح مزين بفن الفسيفساء.</p>
+
+      <a class="add-to-cart" 
+         href="new 2.html?product=طاولة خشبية صغيرة&price=15">
+         أضف إلى السلة
+      </a>
+    </div>
+	
+	<div class="product">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" alt=" طاولة خشبية">
+      <h3>طاولة خشبية صغيرة</h3>
+      <p>مع سطح مزين بفن الفسيفساء.</p>
+
+      <a class="add-to-cart" 
+         href="new 2.html?product=طاولة خشبية صغيرة&price=15">
+         أضف إلى السلة
+      </a>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6" alt="صينية تقديم">
+      <h3> صينية خشبية صغيرة </h3>
+      <p>تتوفر بزخارف جميلة مختلفة.</p>
+
+      <a class="add-to-cart" 
+         href="new 2.html?product=كرسي خشبي أنيق&price=20">
+         أضف إلى السلة
+      </a>
+    </div>
+
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1606788075761-1e1d88aa2e9d" alt="كوستر خشبي">
+      <h3></h3>
+      <p>قطعة فنية تضيف لمسة دافئة للمنزل.</p>
+
+      <a class="add-to-cart" 
+         href="new 2.html?product=علبة خشبية للزينة&price=8">
+         أضف إلى السلة
+      </a>
+    </div>
+
+</section>
+
+
+  
+
+  <!-- ذيل الصفحة -->
+  <footer>
+    &copy; 2025 جميع الحقوق محفوظة لمتجر <strong>حطبه</strong>
+  </footer>
+<!-- أزرار التواصل -->
+<div class="social-buttons">
+    <a href="https://wa.me/+96877159550" target="_blank" class="whatsapp">
+	<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+    </a>
+
+    </a>
+    <a href="https://instagram.com/hatbahh" target="_blank" class="instagram">
+     <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+    </a>
+</div>
+
+</body>
+</html>
